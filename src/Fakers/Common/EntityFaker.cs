@@ -2,7 +2,7 @@
 
 public class EntityFaker<TEntity>: Faker<TEntity> where TEntity : Entity
 {
-    protected EntityFaker(string locale = "en") : base(locale)
+    protected EntityFaker() : base()
     {
         RuleFor(e => e.Id, f => f.Random.Guid());
     }
