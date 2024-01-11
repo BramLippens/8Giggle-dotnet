@@ -1,7 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Domain.Common;
-
-namespace Domain.Posts;
+﻿namespace Domain.Posts;
 
 public class Post : Entity
 {

@@ -6,7 +6,7 @@
 /// </summary>
 public abstract class Entity
 {
-    public int Id { get; protected set; }
+    public Guid Id { get; protected set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public bool IsEnabled { get; set; } = true;
@@ -14,7 +14,10 @@ public abstract class Entity
     /// <summary>
     /// Entity Framework Constructor
     /// </summary>
-    protected Entity() { }
+    protected Entity()
+    {
+        Id = Guid.NewGuid();
+    }
 
     public override bool Equals(object? obj)
     {
@@ -27,7 +30,7 @@ public abstract class Entity
         if (GetUnproxiedType(this) != GetUnproxiedType(other))
             return false;
 
-        if (Id.Equals(default) || other.Id.Equals(default))
+        if (Id.Equals(default(Guid)) || other.Id.Equals(default(Guid)))
             return false;
 
         return Id.Equals(other.Id);
