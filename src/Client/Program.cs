@@ -1,4 +1,4 @@
-using _8Giggle_dotnet.Client;
+using Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
