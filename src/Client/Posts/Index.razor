@@ -1,0 +1,35 @@
+﻿@page "/product"
+<PageTitle>Posts</PageTitle>
+
+@if(posts is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="columns">
+    <div class="column is-one-quarter">
+        <AuthorizeView Roles="@Roles.Adminstrator">
+            <div class="buttons">
+                <button class="button is-primary is-fullwidth">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Toevoegen</span>
+                </button>
+            </div>
+        </AuthorizeView>
+        <h1 class="title is-size-6 is-uppercase has-text-grey">Search for post</h1>
+    </div>
+    <div class="column">
+        <div class="columns is-multiline">
+            @foreach (var post in posts)
+            {
+                <div class="column is-half">
+                    <PostListItem Post="post" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+}
