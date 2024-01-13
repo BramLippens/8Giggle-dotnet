@@ -16,8 +16,20 @@ public class PostController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<PostResult.Index> GetIndex([FromQuery] PostRequest.Index request)
+    public Task<PostResult.Index> GetIndex([FromQuery] PostRequest.Index request)
     {
-        return await postService.GetIndexAsync(request);
+        return postService.GetIndexAsync(request);
+    }
+
+    [HttpGet("{Id}")]
+    public Task<PostResult.Detail> GetDetail([FromRoute] PostRequest.Detail request)
+    {
+        return postService.GetDetailAsync(request.Id);
+    }
+
+    [HttpPost]
+    public Task<PostResult.Create> Create([FromBody] PostRequest.Create request)
+    {
+        return postService.CreateAsync(request);
     }
 }
