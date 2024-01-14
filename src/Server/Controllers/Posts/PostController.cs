@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Posts;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Server.Controllers.Posts;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class PostController : ControllerBase
 {
     private readonly IPostService postService;
@@ -15,13 +17,15 @@ public class PostController : ControllerBase
         this.postService = postService;    
     }
 
-    [HttpGet]
-    public Task<PostResult.Index> GetIndex([FromQuery] PostRequest.Index request)
+    [SwaggerOperation("Returns a list of products available in the bogus catalog.")]
+    [HttpGet, AllowAnonymous]
+    public async Task<PostResult.Index> GetIndex([FromQuery] PostRequest.Index request)
     {
-        return postService.GetIndexAsync(request);
+        return await postService.GetIndexAsync(request);
     }
 
-    [HttpGet("{Id}")]
+    [SwaggerOperation("Returns a specific product available in the bogus catalog.")]
+    [HttpGet("{productId}"), AllowAnonymous]
     public Task<PostResult.Detail> GetDetail([FromRoute] PostRequest.Detail request)
     {
         return postService.GetDetailAsync(request.Id);

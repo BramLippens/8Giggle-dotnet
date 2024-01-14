@@ -5,8 +5,10 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 using Server.Middleware;
+using Server.Authentication;
 using Shared.Posts;
 using Service;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Server;
 
@@ -41,6 +43,9 @@ public class StartUp
             options.CustomSchemaIds(type => type.DeclaringType is null ? $"{type.Name}" : $"{type.DeclaringType?.Name}.{type.Name}");
             options.EnableAnnotations();
         }).AddFluentValidationRulesToSwagger();
+
+        services.AddAuthentication("Fake Authentication")
+                .AddScheme<AuthenticationSchemeOptions, FakeAuthenticationHandler>("Fake Authentication", null);
 
         services.AddControllersWithViews();
         services.AddRazorPages();

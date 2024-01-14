@@ -31,7 +31,7 @@ public class FakeAuthenticationProvider : AuthenticationStateProvider
     public static IEnumerable<ClaimsPrincipal> ClaimsPrincipals =>
         new List<ClaimsPrincipal>() { Anonymous, User, Administrator };
 
-    public ClaimsPrincipal Current { get; private set; } = Administrator;
+    public ClaimsPrincipal Current { get; private set; } = Anonymous;
 
     public override Task<AuthenticationState> GetAuthenticationStateAsync()
     {

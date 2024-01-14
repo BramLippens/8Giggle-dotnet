@@ -21,7 +21,7 @@ builder.Services.AddHttpClient("ServerAPI", client => client.BaseAddress = new U
                 .AddHttpMessageHandler<FakeAuthorizationMessageHandler>()
                 .AddHttpMessageHandler<CleanErrorHandler>();
 
-builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("erverAPI"));
+builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ServerAPI"));
 
 builder.Services.AddScoped<IPostService, PostService>();
 

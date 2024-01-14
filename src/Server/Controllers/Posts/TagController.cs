@@ -4,7 +4,7 @@ using Shared.Tags;
 namespace Server.Controllers.Posts;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class TagController : ControllerBase
 {
     private readonly ITagService tagService;

@@ -1,1 +1,20 @@
-﻿
+﻿@using Microsoft.AspNetCore.Components.Authorization
+﻿<div class="card is-clickable" >
+    <div class="card-image" @onclick="NavigateToDetail">
+        <figure class="image is-4by3">
+            <img src="https://picsum.photos/200/300" alt="Placeholder image">
+        </figure>
+    </div>
+    <div class="card-content" @onclick="NavigateToDetail">
+        <div class="content">
+            <h1 class="title is-size-4">@Post.Title</h1>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <a href="post/@Post.Id" class="card-footer-item">Go To</a>
+        <AuthorizeView Roles="@Roles.Adminstrator">
+            <a href="post/@Post.Id" class="card-footer-item">Wijzigen</a>
+        </AuthorizeView>
+    </footer>
+</div>
+

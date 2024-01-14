@@ -15,7 +15,7 @@ public class PostService : IPostService
 
     public async Task<PostResult.Index> GetIndexAsync(PostRequest.Index request)
     {
-        var response = await client.GetFromJsonAsync<PostResult.Index>($"{endpoint}");
+        var response = await client.GetFromJsonAsync<PostResult.Index>($"{endpoint}?page=1&pagesize=10");
         return response;
     }
 
